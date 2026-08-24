@@ -42,32 +42,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'family': {
         title: 'Family & Childhood Sanctuary',
         desc: 'Thoughtfully designed spaces ensuring safety, joyful play, and precious togetherness for young minds and parents.',
-        img: 'images/amenities/family.jpg',
+        img: 'images/amenities/family_new.png',
         items: ['Kids Experience Zone', "Children's Splash Pool", "Toddler's Safe Pool Area", "Modern Day Creche & Nursery"]
       },
       'active': {
         title: 'Active & Athletic Lifestyle',
         desc: 'State-of-the-art sports facilities designed to keep your physical vitality at its peak every day.',
-        img: 'images/amenities/active.jpg',
+        img: 'images/amenities/active_new.png',
         items: ['Multipurpose Sports Court', 'Futsal Turf Arena', 'Half-Basketball Court', 'Active Lifestyle Jogging Loop']
       },
       'wellness': {
         title: 'Mindfulness & Physical Wellness',
         desc: 'Dedicated spaces for quiet reflection, yoga, sauna relaxation, and rejuvenating exercise.',
-        img: 'images/amenities/wellness.jpg',
+        img: 'images/amenities/wellness_new.png',
         items: ['High-Tech Gymnasium', 'Zen Yoga Studio & Deck', 'Therapeutic Steam & Sauna', 'Acupressure Reflexology Walkway']
       },
       'social': {
         title: 'Social & Hospitality Club',
         desc: 'Grand entertainment venues for memorable celebrations, movies, and community gatherings.',
-        img: 'images/amenities/social.jpg',
+        img: 'images/amenities/social_new.png',
         items: ['Grand Banquet Hall', 'Private Mini Theatre', 'Party Lawn with Pavilion', 'Sophisticated Library Lounge']
-      },
-      'seniors': {
-        title: 'Senior Citizens Haven',
-        desc: 'Peaceful, accessible spaces crafted for quiet conversations, shade, and evening strolls.',
-        img: 'images/amenities/seniors.jpg',
-        items: ['Dedicated Senior Citizens Plaza', 'Podium Leisure Deck', 'Shaded Reading Gazebo', 'Seated Chess & Cards Garden']
       },
       'pets': {
         title: 'Pet Care & Recreation',
@@ -517,8 +511,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('lead-form');
     const successMsg = document.getElementById('form-success');
 
-    // Configurable endpoint for Hostinger / Formspree / Custom PHP API
-    window.LEAD_FORM_ENDPOINT = 'https://formspree.io/f/placeholder';
+    // TODO: Replace with the real business WhatsApp number (country code + number, no + or spaces)
+    // before running any paid ads. Leads are delivered by opening a pre-filled WhatsApp chat to this number.
+    window.LEAD_WHATSAPP_NUMBER = '910000000000';
 
     openBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
@@ -533,12 +528,43 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    if (modal) {
+      // Close when clicking the dark backdrop outside the form box
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('open');
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) {
+          modal.classList.remove('open');
+        }
+      });
+    }
+
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Demonstrate lead processing
+
+        const name = document.getElementById('lead-name').value.trim();
+        const phone = document.getElementById('lead-phone').value.trim();
+        const email = document.getElementById('lead-email').value.trim();
+        const interest = document.getElementById('lead-interest').value;
+
+        const message =
+          `Hi, I am interested in Riverdale Grand.%0A` +
+          `Name: ${name}%0A` +
+          `Phone: ${phone}%0A` +
+          `Email: ${email}%0A` +
+          `Interest: ${interest}`;
+
+        const waUrl = `https://wa.me/${window.LEAD_WHATSAPP_NUMBER}?text=${message}`;
+
         form.style.display = 'none';
         if (successMsg) successMsg.style.display = 'block';
+
+        // Hand the lead off to WhatsApp so it actually reaches the sales team
+        window.open(waUrl, '_blank');
 
         setTimeout(() => {
           if (modal) modal.classList.remove('open');

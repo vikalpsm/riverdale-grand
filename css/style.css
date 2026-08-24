@@ -53,6 +53,7 @@ html {
 
 body {
   overflow-x: hidden;
+  
   position: relative;
   line-height: 1.6;
 }
@@ -276,6 +277,7 @@ a {
   width: 100%;
   height: var(--nav-height);
   z-index: 1000;
+  background: linear-gradient(180deg, rgba(10, 11, 13, 0.75) 0%, rgba(10, 11, 13, 0.35) 100%);
   transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease, height 0.4s ease;
 }
 
@@ -306,6 +308,7 @@ a {
   font-weight: 500;
   color: var(--text-light);
   line-height: 1;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
 }
 
 .logo-sub {
@@ -313,6 +316,7 @@ a {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--accent-gold);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
   margin-top: 0.2rem;
 }
 
@@ -327,8 +331,9 @@ a {
   font-size: 0.8rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 500;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
   position: relative;
   padding: 0.5rem 0;
 }
@@ -434,12 +439,12 @@ a {
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 700px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 8rem 0 3rem;
 }
 
 .hero-bg {
@@ -460,7 +465,7 @@ a {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 11, 13, 0.5) 0%, rgba(10, 11, 13, 0.3) 50%, rgba(10, 11, 13, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(10, 11, 13, 0.6) 0%, rgba(10, 11, 13, 0.55) 50%, rgba(10, 11, 13, 0.95) 100%);
   z-index: 2;
 }
 
@@ -479,11 +484,16 @@ a {
   text-transform: uppercase;
   color: var(--accent-gold);
   margin-bottom: 1.2rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
 .hero-title {
   margin-bottom: 1.2rem;
-  color: var(--text-light);
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 8px 30px rgba(0, 0, 0, 0.8);
+  -webkit-text-fill-color: #ffffff;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .hero-location {
@@ -492,6 +502,7 @@ a {
   color: rgba(255, 255, 255, 0.85);
   font-weight: 300;
   margin-bottom: 2.5rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
 .hero-buttons {
@@ -503,10 +514,8 @@ a {
 }
 
 .hero-scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin-top: 3rem;
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -963,12 +972,16 @@ a {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border-dark);
+  background-color: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .amenity-visual img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -1173,11 +1186,19 @@ a {
   background: #060709;
   border: 1px solid var(--border-dark);
   height: 480px;
+  padding: 1rem;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.location-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f4f4f4;
 }
 
 .map-center-node {
@@ -1274,6 +1295,165 @@ a {
 .spec-cat-detail {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.85);
+}
+
+/* Hero Stats Bar */
+.hero-stats-bar {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  background: rgba(10, 11, 13, 0.55);
+  border: 1px solid var(--border-dark);
+  backdrop-filter: blur(6px);
+}
+
+.hero-stat-item {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-right: 1px solid var(--border-dark);
+}
+
+.hero-stat-item:last-child {
+  border-right: none;
+}
+
+.hero-stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.hero-stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-stat-item {
+    border-bottom: 1px solid var(--border-dark);
+  }
+}
+
+/* Project Overview Quick Facts */
+.overview-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.overview-fact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dark);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.overview-fact-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.overview-fact-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+}
+
+@media (max-width: 768px) {
+  .overview-facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Pricing Section */
+.pricing-tower-group {
+  margin-bottom: 3.5rem;
+}
+
+.pricing-tower-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.pricing-tower-header h3 {
+  color: var(--text-light);
+  font-size: 1.4rem;
+}
+
+.pricing-possession {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+}
+
+.pricing-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-dark);
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+
+.pricing-table th {
+  background: var(--bg-card);
+  color: var(--accent-gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.pricing-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-dark);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+.pricing-table tr:last-child td {
+  border-bottom: none;
+}
+
+.pricing-note {
+  font-size: 0.75rem;
+  color: var(--text-muted-light);
+  margin-top: 0.6rem;
+}
+
+.pricing-disclaimer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted-light);
+  margin-top: 1rem;
 }
 
 /* Sun Path Section */
@@ -1484,11 +1664,28 @@ a {
   background: var(--bg-card);
   border: 1px solid var(--border-gold);
   width: 100%;
-  max-width: 580px;
-  padding: 3rem;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
   position: relative;
   transform: translateY(20px);
   transition: transform 0.4s ease;
+}
+
+.modal-box .section-label {
+  font-size: 0.65rem;
+  margin-bottom: 0.6rem;
+}
+
+.modal-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.modal-box p {
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .modal-overlay.open .modal-box {
@@ -1497,12 +1694,12 @@ a {
 
 .modal-close {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
   color: var(--text-muted);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -1514,18 +1711,18 @@ a {
 .modal-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  margin-top: 2rem;
+  gap: 0.85rem;
+  margin-top: 1.2rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .form-group label {
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -1534,10 +1731,10 @@ a {
 .form-control {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-dark);
-  padding: 1rem 1.2rem;
+  padding: 0.7rem 1rem;
   color: var(--text-light);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   transition: border-color 0.3s ease;
   outline: none;
 }
@@ -1558,7 +1755,12 @@ select.form-control option {
 .form-success-msg {
   display: none;
   text-align: center;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
+}
+
+.modal-form .btn {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.75rem;
 }
 
 /* Floating WhatsApp Button */
@@ -1676,6 +1878,43 @@ select.form-control option {
   color: var(--text-light);
   letter-spacing: 0.2em;
   margin-bottom: 1rem;
+}
+
+.legal-disclaimer {
+  border-top: 1px solid var(--border-dark);
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  color: var(--text-muted-light);
+}
+
+.legal-disclaimer a {
+  color: var(--accent-gold);
+}
+
+/* Disclaimer Section */
+.disclaimer-section {
+  background-color: var(--bg-dark-secondary);
+  border-top: 1px solid var(--border-dark);
+  padding: 3.5rem 0;
+}
+
+.disclaimer-heading {
+  color: var(--text-light);
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.disclaimer-text {
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--text-muted-light);
+  max-width: 1000px;
+}
+
+.disclaimer-text a {
+  color: var(--accent-gold);
 }
 
 .footer-bottom {
