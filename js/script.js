@@ -22,6 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
         view: 'Unobstructed River & Horizon',
         deck: 'Extended Panoramic Deck',
         img: 'images/floorplans/floorplan_02.jpg'
+      },
+      'plan-3': {
+        title: '3 BHK Grand Suite — Type C',
+        carpet: '1,520 SQ. FT.',
+        view: 'Skyline & Riverside Dual Aspect',
+        deck: 'Wrap-around Balcony',
+        img: 'images/floorplans/floorplan_03.jpg'
+      },
+      'plan-4': {
+        title: '3 BHK Riverfront Collection — Type D',
+        carpet: '1,610 SQ. FT.',
+        view: 'Prime Riverfront Promenade View',
+        deck: 'Grand Master Suite Deck',
+        img: 'images/floorplans/floorplan_04.jpg'
       }
     },
     amenities: {
