@@ -1698,6 +1698,46 @@ a {
   transform: translateY(0);
 }
 
+.policy-modal-box {
+  max-width: 720px;
+  text-align: left;
+}
+
+.policy-modal-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.policy-modal-updated {
+  color: var(--text-muted-light);
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.policy-modal-content h3 {
+  font-family: var(--font-display);
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+  margin: 1.75rem 0 0.75rem;
+}
+
+.policy-modal-content p,
+.policy-modal-content li {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.policy-modal-content ul {
+  padding-left: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.policy-modal-content a {
+  color: var(--accent-gold);
+  text-decoration: underline;
+}
+
 .modal-close {
   position: absolute;
   top: 1rem;
@@ -1903,24 +1943,62 @@ select.form-control option {
 .disclaimer-section {
   background-color: var(--bg-dark-secondary);
   border-top: 1px solid var(--border-dark);
-  padding: 3.5rem 0;
+  padding: 4rem 0;
+}
+
+.disclaimer-panel {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1100px;
+  padding: 2.5rem;
+  border: 1px solid var(--border-dark);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.disclaimer-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-dark);
+  color: var(--accent-gold);
+  font-size: 1.1rem;
 }
 
 .disclaimer-heading {
   color: var(--text-light);
   font-size: 1.4rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .disclaimer-text {
-  font-size: 0.8rem;
-  line-height: 1.8;
+  font-size: 0.82rem;
+  line-height: 1.85;
   color: var(--text-muted-light);
-  max-width: 1000px;
 }
 
 .disclaimer-text a {
   color: var(--accent-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.disclaimer-text a:hover {
+  color: var(--accent-gold-hover);
+}
+
+@media (max-width: 767px) {
+  .disclaimer-panel {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.75rem;
+  }
 }
 
 .footer-bottom {

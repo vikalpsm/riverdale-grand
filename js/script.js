@@ -42,25 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
       'family': {
         title: 'Family & Childhood Sanctuary',
         desc: 'Thoughtfully designed spaces ensuring safety, joyful play, and precious togetherness for young minds and parents.',
-        img: 'images/amenities/family_new.png',
+        img: 'images/amenities/family_new.jpg',
         items: ['Kids Experience Zone', "Children's Splash Pool", "Toddler's Safe Pool Area", "Modern Day Creche & Nursery"]
       },
       'active': {
         title: 'Active & Athletic Lifestyle',
         desc: 'State-of-the-art sports facilities designed to keep your physical vitality at its peak every day.',
-        img: 'images/amenities/active_new.png',
+        img: 'images/amenities/active_new.jpg',
         items: ['Multipurpose Sports Court', 'Futsal Turf Arena', 'Half-Basketball Court', 'Active Lifestyle Jogging Loop']
       },
       'wellness': {
         title: 'Mindfulness & Physical Wellness',
         desc: 'Dedicated spaces for quiet reflection, yoga, sauna relaxation, and rejuvenating exercise.',
-        img: 'images/amenities/wellness_new.png',
+        img: 'images/amenities/wellness_new.jpg',
         items: ['High-Tech Gymnasium', 'Zen Yoga Studio & Deck', 'Therapeutic Steam & Sauna', 'Acupressure Reflexology Walkway']
       },
       'social': {
         title: 'Social & Hospitality Club',
         desc: 'Grand entertainment venues for memorable celebrations, movies, and community gatherings.',
-        img: 'images/amenities/social_new.png',
+        img: 'images/amenities/social_new.jpg',
         items: ['Grand Banquet Hall', 'Private Mini Theatre', 'Party Lawn with Pavilion', 'Sophisticated Library Lounge']
       },
       'pets': {
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSunPathVisualizer();
   initBeforeAfterSlider();
   initLeadModal();
+  initPolicyModal();
   initMobileMenu();
 
   /* ==========================================================================
@@ -582,6 +583,49 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModalWithInfo(title, text) {
     const modal = document.getElementById('lead-modal');
     if (modal) modal.classList.add('open');
+  }
+
+  /* ==========================================================================
+     14b. PRIVACY POLICY / TERMS & CONDITIONS MODAL
+     ========================================================================== */
+  function initPolicyModal() {
+    const modal = document.getElementById('policy-modal');
+    if (!modal) return;
+
+    const closeBtn = modal.querySelector('[data-policy-close]');
+    const links = document.querySelectorAll('.footer-policy-link');
+    const panels = {
+      privacy: document.getElementById('policy-content-privacy'),
+      terms: document.getElementById('policy-content-terms')
+    };
+
+    function showPanel(key) {
+      Object.keys(panels).forEach((k) => {
+        if (panels[k]) panels[k].hidden = k !== key;
+      });
+    }
+
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPanel(link.dataset.policy);
+        modal.classList.add('open');
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        modal.classList.remove('open');
+      }
+    });
   }
 
   /* ==========================================================================
