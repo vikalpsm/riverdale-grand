@@ -516,6 +516,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // before running any paid ads. Leads are delivered by opening a pre-filled WhatsApp chat to this number.
     window.LEAD_WHATSAPP_NUMBER = '910000000000';
 
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('open');
+      // Reset form state after the close transition finishes
+      setTimeout(() => {
+        if (form) {
+          form.reset();
+          form.style.display = 'flex';
+        }
+        if (successMsg) successMsg.style.display = 'none';
+      }, 500);
+    }
+
     openBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -523,22 +536,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    if (closeBtn && modal) {
-      closeBtn.addEventListener('click', () => {
-        modal.classList.remove('open');
-      });
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    const successCloseBtn = document.getElementById('form-success-close');
+    if (successCloseBtn) {
+      successCloseBtn.addEventListener('click', closeModal);
     }
 
     if (modal) {
       // Close when clicking the dark backdrop outside the form box
       modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.remove('open');
+        if (e.target === modal) closeModal();
       });
 
       // Close on Escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('open')) {
-          modal.classList.remove('open');
+          closeModal();
         }
       });
     }
@@ -566,16 +582,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Hand the lead off to WhatsApp so it actually reaches the sales team
         window.open(waUrl, '_blank');
-
-        setTimeout(() => {
-          if (modal) modal.classList.remove('open');
-          // Reset form state after close
-          setTimeout(() => {
-            form.reset();
-            form.style.display = 'flex';
-            if (successMsg) successMsg.style.display = 'none';
-          }, 500);
-        }, 3000);
       });
     }
   }
